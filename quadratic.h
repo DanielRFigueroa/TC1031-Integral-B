@@ -19,6 +19,7 @@ private:
 	long indexOf(const Key) const;
 
 public:
+
 	Quadratic(unsigned int, Key, unsigned int (*f) (const Key)) ;
 	~Quadratic();
 	bool full() const;

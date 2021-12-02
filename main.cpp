@@ -112,6 +112,7 @@ int main (){
 
         default:
             cout<<"Opcion no valida en el menu, intente de nuevo"<<endl;
+            cout<<" "<<endl;
             break;
         }
 

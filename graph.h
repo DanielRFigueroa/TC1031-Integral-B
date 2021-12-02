@@ -145,6 +145,7 @@ string Graph::printAdjMat_clean(){
 	return aux.str();
 }
 
+
 /*bool Graph::BFS(int src, int dest, int v, int pred[], int dist[])
 {
     // a queue to maintain queue of vertices whose
@@ -229,8 +230,6 @@ void Graph::printShortestDistance(int s,
     for (int i = path.size() - 1; i >= 0; i--)
         cout << path[i] << " ";
 }*/
-
-
 
 
 string Graph::BFS(int start, int target) {
