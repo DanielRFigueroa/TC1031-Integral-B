@@ -8,6 +8,9 @@
 #include <stack>
 #include <list> 
 #include <algorithm>
+#include <stdlib.h>
+#include <string.h>
+
 #include "graph.h"
 #include "quadratic.h"
 
@@ -24,18 +27,22 @@ unsigned int myHash(const string s) {
 int main (){
 
     int opcion;
-    int start;
-    int target;
+    string start;
+    string target;
     int num;
     string name;
     string strNum;
     int length;
+    string city;
+    string linea;
+    string texto;
 
     Graph taxi;
     taxi.loadGraphMat( "taxis.txt", 10 , 10);
 
     Quadratic <string, int> quad_hash(10, string("empty"), myHash);
 
+    ifstream file("base de datos.txt");
 
     while (true) {
 
@@ -43,7 +50,7 @@ int main (){
         cout<<"\n1 ..... Ver Rutas Disponibles"<<endl;
         cout<<"2 ..... Llamar a un taxi"<<endl;
         cout<<"3 ..... Registrar datos de contacto"<<endl;
-        cout<<"4 ..... Menu de conductor"<<endl;
+        cout<<"4 ..... PhoneApp de conductor"<<endl;
         cout<<"5 ..... Salir"<<endl;
         cout<<" "<<endl;
         cout<<"Opcion: ";
@@ -57,21 +64,25 @@ int main (){
 
         case 2:   
 
-            taxi.loadGraphMat( "taxis.txt", 10 , 10);
+            taxi.loadGraphList("taxis.txt", 10 , 10);
+            taxi.loadGraphMat("taxis.txt", 10 , 10);
+
+            cout<<"\nLista de lugares: ALAMEDA - ARCOS - ANTEA - REFUGIO - JURIQUILLA"<<endl;
+            cout<<"Lista de lugares: TECMTY - ANAHUAC - MILENIO - PASEO - BOULEVARES"<<endl;
+            cout<<"\nPorfavor escriba el lugar de su eleccion en MAYUSCULAS y tal como esta escrito, gracias."<<endl;
             cout<<"\nEscribe tu origen: ";
             cin>>start;
             cout<<"\nEscribe tu destino: ";
             cin>>target;
             cout<<"\nLa ruta mas rapida es: ";
 
-
-            taxi.BFS(start, target);
+            cout<<taxi.BFS(citytonumber(start), citytonumber(target));
 
             
             break;
         
         case 3:
-            
+
             cout<<"\nIntroduce tu nombre: ";
             cin>>name;
             cout<<"\nIntroduce un numero (SIN LADA) para que el conductor te llame cuando llegue: ";
@@ -84,6 +95,7 @@ int main (){
                 cout<<"\nEl numero introducido no contiene 7 numeros, intentelo de nuevo."<<endl;
                 break;
             }
+            write(name, num);
             quad_hash.put(string(name), num);
 
             break;
@@ -92,8 +104,8 @@ int main (){
 
             cout<<"\nBienvenido Conductor!"<<endl;
             cout<<" "<<endl;
-            cout<<"Para obtener el numero de tu pasajero, porfavor introduce el"<<endl;
-            cout<<"nombre de tu pasajero disponible unicamente en tu app de conductor: ";
+            cout<<"Para obtener el numero de tu pasajero mediante PhoneApp, porfavor introduce su"<<endl;
+            cout<<"nombre el cual esta disponible unicamente en tu app de conductor cuando abres el viaje: ";
             cin>>name;
             cout<<" "<<endl;
             cout<<"EL numero de "<<name<<" es: ";
@@ -119,3 +131,4 @@ int main (){
     }
 
 }
+

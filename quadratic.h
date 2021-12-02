@@ -1,9 +1,11 @@
 #ifndef QUADRATIC_H_
 #define QUADRATIC_H_
 
+#include <stdlib.h>
 #include <string>
 #include <sstream>
 
+using namespace std;
 
 template <class Key, class Value>
 class Quadratic {
@@ -27,7 +29,7 @@ public:
 	bool contains(const Key) const;
 	Value get(const Key);
 	void clear();
-	std::string toString() const;
+	string toString() const;
     void ordenaSeleccion() const;
 };
 
@@ -116,6 +118,20 @@ bool Quadratic<Key, Value>::put(const Key k, const Value v)  {
 	return false;
 }
 
+void write(string name, int num){
+
+	ofstream myFile;
+	stringstream aux;
+
+	myFile.open("base de datos.txt", ios::app);
+	aux<< "# USUARIO: "<<name<<endl;
+	aux<<"	# NUMERO: "<<num<<"\n \n";
+
+	myFile<<aux.str();
+
+	myFile.close();
+}
+
 template <class Key, class Value>
 bool Quadratic<Key, Value>::contains(const Key k) const {
 	return (indexOf(k) != -1);
@@ -143,9 +159,9 @@ void Quadratic<Key, Value>::clear() {
 
 
 template <class Key, class Value>
-std::string Quadratic<Key, Value>::toString() const {
+string Quadratic<Key, Value>::toString() const {
 
-	std::stringstream aux;
+	stringstream aux;
 
 	for (int i = 0; i < size; i++){
         

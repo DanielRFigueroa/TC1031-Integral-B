@@ -1,0 +1,30 @@
+
+***********************   BASE DE DATOS DE PASAJEROS QUERETAXI:   ***********************
+
+
+# USUARIO: Daniel
+	# NUMERO: 3412211
+ 
+# USUARIO: Ruth
+	# NUMERO: 2022166
+
+# USUARIO: Fernando
+	# NUMERO: 2022858
+
+# USUARIO: Valeria
+	# NUMERO: 1212121
+
+# USUARIO: Ariel
+	# NUMERO: 5481427
+
+# USUARIO: Denisse
+	# NUMERO: 1915283
+
+# USUARIO: Santiago
+	# NUMERO: 8263829
+
+# USUARIO: Daniela
+	# NUMERO: 8276381
+
+# USUARIO: Benji
+	# NUMERO: 1234567

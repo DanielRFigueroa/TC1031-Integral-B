@@ -2,6 +2,8 @@
 #ifndef Graph_H_
 #define Graph_H_
 
+#include "change.h"
+
 #include <string>
 #include <cstdio>
 #include <sstream>
@@ -35,10 +37,8 @@ public:
     string printAdjMat();
 	string printAdjMat_clean();
     string printAdjList();
-    //bool BFS(int src, int dest, int v, int pred[], int dist[]);
     string BFS(int, int);
     void BFSHelper(int, int, queue<int> &, list<int> &, vector<vector<int> > &, stringstream &);
-    //void printShortestDistance(int s, int dest, int v);
     static void printPath(vector<vector<int> > &, int, int, stringstream &);
     static void printVisited(list<int>, stringstream &);
     static bool contains(list<int>, int);
@@ -128,7 +128,7 @@ string Graph::printAdjMat_clean(){
 	stringstream aux;
 	aux << "\n nodes \t|";
 	for (int i = 0; i < nodes; i++){
-			aux << "\t" << i ;
+			aux << "\t" << validation(i) ;
 	}
 	aux << "\n";
 	for (int i = 0; i < nodes; i++){
@@ -136,7 +136,7 @@ string Graph::printAdjMat_clean(){
 	}
 	aux << "\n";
 	for (int i = 0; i < nodes; i++){
-		 aux << i << "\t|";
+		 aux << validation(i) << "\t|";
 	   for (int j = 0; j < nodes; j++){
 			 aux << "\t" << adjMatrix[i*nodes+j];
 		 }
@@ -144,93 +144,6 @@ string Graph::printAdjMat_clean(){
   }
 	return aux.str();
 }
-
-
-/*bool Graph::BFS(int src, int dest, int v, int pred[], int dist[])
-{
-    // a queue to maintain queue of vertices whose
-    // adjacency list is to be scanned as per normal
-    // DFS algorithm
-    list<int> queue;
- 
-    // boolean array visited[] which stores the
-    // information whether ith vertex is reached
-    // at least once in the Breadth first search
-    bool visited[v];
- 
-    // initially all vertices are unvisited
-    // so v[i] for all i is false
-    // and as no path is yet constructed
-    // dist[i] for all i set to infinity
-    for (int i = 0; i < v; i++) {
-        visited[i] = false;
-        dist[i] = INT8_MAX;
-        pred[i] = -1;
-    }
- 
-    // now source is first to be visited and
-    // distance from source to itself should be 0
-    visited[src] = true;
-    dist[src] = 0;
-    queue.push_back(src);
- 
-    // standard BFS algorithm
-    while (!queue.empty()) {
-        int u = queue.front();
-        queue.pop_front();
-        for (int i = 0; i < adjList[u].size(); i++) {
-            if (visited[adjList[u][i]] == false) {
-                visited[adjList[u][i]] = true;
-                dist[adjList[u][i]] = dist[u] + 1;
-                pred[adjList[u][i]] = u;
-                queue.push_back(adjList[u][i]);
- 
-                // We stop BFS when we find
-                // destination.
-                if (adjList[u][i] == dest)
-                    return true;
-            }
-        }
-    }
- 
-    return false;
-}
- 
-// utility function to print the shortest distance
-// between source vertex and destination vertex
-void Graph::printShortestDistance(int s,
-                           int dest, int v)
-{
-    // predecessor[i] array stores predecessor of
-    // i and distance array stores distance of i
-    // from s
-    int pred[v], dist[v];
- 
-    if (BFS(s, dest, v, pred, dist) == false) {
-        cout << "Given source and destination"
-             << " are not connected";
-        return;
-    }
- 
-    // vector path stores the shortest path
-    vector<int> path;
-    int crawl = dest;
-    path.push_back(crawl);
-    while (pred[crawl] != -1) {
-        path.push_back(pred[crawl]);
-        crawl = pred[crawl];
-    }
- 
-    // distance from source is in distance array
-    cout << "La Ruta que tomara el taxi es: "
-         << dist[dest]<<" rutas";
- 
-    // printing path from source to destination
-    cout << "\nLa Ruta es::\n";
-    for (int i = path.size() - 1; i >= 0; i--)
-        cout << path[i] << " ";
-}*/
-
 
 string Graph::BFS(int start, int target) {
     stringstream aux;
@@ -266,11 +179,6 @@ void Graph::BFSHelper(int current, int target, queue<int> &queue, list<int> &vis
     }
 }
 
-
-
-
-
-
 void Graph::printVisited(list<int> visited, stringstream &aux) {
     aux << "visited: ";
     while (!visited.empty()) {
@@ -293,7 +201,7 @@ void Graph::printPath(vector<vector<int> > &path, int start, int target, strings
 
     reverse.push(start);
     while (!reverse.empty()) {
-        aux << reverse.top();
+        aux << validation(reverse.top());
         reverse.pop();
         if (!reverse.empty()){
 			aux << " ";
@@ -317,67 +225,6 @@ bool Graph::contains(list<int> lista, int node) {
 		return false;
 	}
 }
-/*int citytonumber(string city) {
-
-    int auxi;
-
-    if (city=="ALAMEDA")
-    {
-        auxi=0;
-        return auxi;
-    }
-
-    else if (city=="LOS ARCOS")
-    {
-        auxi=1;
-        return auxi;
-    }
-
-    else if (city=="ANTEA")
-    {
-        auxi=2;
-        return auxi;
-    }
-
-    else if (city=="EL REFUGIO")
-    {
-        auxi=3;
-        return auxi;
-    }
-
-    else if (city=="JURIQUILLA")
-    {
-        auxi=4;
-        return auxi;
-    }
-    else if (city=="TEC MTY")
-    {
-        auxi=5;
-        return auxi;
-    }
-    else if (city=="ANAHUAC")
-    {
-        auxi=6;
-        return auxi;
-    }
-    else if (city=="MILENIO")
-    {
-        auxi=7;
-        return auxi;
-    }
-    else if (city=="PASEO QUERETARO")
-    {
-        auxi=8;
-        return auxi;
-    }
-    else if (city=="PLAZA BOULEVARES")
-    {
-        auxi=9;
-        return auxi;
-    }
-
-return 0;
-
-} */
+ 
 
 #endif
