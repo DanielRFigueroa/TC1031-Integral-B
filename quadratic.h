@@ -124,7 +124,7 @@ void write(string name, int num){
 	stringstream aux;
 
 	myFile.open("base de datos.txt", ios::app);
-	aux<< "# USUARIO: "<<name<<endl;
+	aux<< "# USUARIO: "<<name<<endl<<endl;
 	aux<<"	# NUMERO: "<<num<<"\n \n";
 
 	myFile<<aux.str();

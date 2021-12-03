@@ -65,7 +65,6 @@ int main (){
         case 2:   
 
             taxi.loadGraphList("taxis.txt", 10 , 10);
-            taxi.loadGraphMat("taxis.txt", 10 , 10);
 
             cout<<"\nLista de lugares: ALAMEDA - ARCOS - ANTEA - REFUGIO - JURIQUILLA"<<endl;
             cout<<"Lista de lugares: TECMTY - ANAHUAC - MILENIO - PASEO - BOULEVARES"<<endl;
